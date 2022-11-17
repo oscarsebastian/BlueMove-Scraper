@@ -9,6 +9,7 @@ Script to scrape Aptos drops on bluemove.
 # How do I use it?
 
 Just unpack the zip and install requirements with pip install -r requirements.txt
+<b>
 Then just modify webhook url inside send_hook function and run the main.py.
 
 Enjoy!
