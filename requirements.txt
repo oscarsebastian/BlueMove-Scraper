@@ -1,3 +1,4 @@
 cloudscraper==1.2.60
 discord-webhook==0.16.3
 discordwebhook==1.0.3
+pytz==2021.3
