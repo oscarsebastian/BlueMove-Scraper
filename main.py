@@ -15,12 +15,13 @@ def send_hook(collection_name:str,
               start_time:str,
               price_per_item:str,
               launchpad_name_extension:str,
-              launchpad_slug:str):
+              launchpad_slug:str,
+              webhook_url:str):
     
     webhook = DiscordWebhook(
-        url=
-        'YOUR_WEBHOOK_URL'
+        url=webhook_url
     )
+    
     embed = DiscordEmbed(title=f'{collection_name} loaded!',
                          description=collection_description,
                          url=f"https://bluemove.net/launchpad-detail/{launchpad_slug}",
@@ -71,7 +72,8 @@ def fetch_information(drop_json:dict):
             fetched_info[key]=drop_json[key]
     return fetched_info
 
-def scrape_api(delay:int):
+def scrape_api(delay:int,
+               webhook_url:str):
     while True:
         scraper = cloudscraper.create_scraper(delay=10,   browser={'custom': 'ScraperBot/1.0',})
         url = 'https://aptos-mainnet-api.bluemove.net/api/launchpads'
@@ -103,8 +105,9 @@ def scrape_api(delay:int):
                             start_time,
                             price_per_item,
                             launchpad_name_extension,
-                            launchpad_slug)
+                            launchpad_slug,
+                            webhook_url)
         print('Sleeping..')
         time.sleep(delay)
 
-scrape_api(15)
+scrape_api(15,'YOUR WEBHOOK URL')
